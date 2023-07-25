@@ -12,3 +12,13 @@ router.post('/', async (req, res) => {
       res.status(400).json({ error: 'Failed to create the item.' });
     }
   });
+
+  // Get all items
+router.get('/', async (req, res) => {
+    try {
+      const items = await Item.find();
+      res.status(200).json(items);
+    } catch (err) {
+      res.status(500).json({ error: 'Failed to retrieve items.' });
+    }
+  });
