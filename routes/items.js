@@ -51,4 +51,36 @@ router.get('/name/:itemName', async (req, res) => {
     }
   });
   
+  // Update an item by itemNo
+router.put('/:itemNo', async (req, res) => {
+    try {
+      const updatedItem = await Item.findOneAndUpdate(
+        { itemNo: req.params.itemNo },
+        req.body,
+        { new: true }
+      );
+      if (updatedItem) {
+        res.status(200).json(updatedItem);
+      } else {
+        res.status(404).json({ error: 'Item not found.' });
+      }
+    } catch (err) {
+      res.status(500).json({ error: 'Failed to update the item.' });
+    }
+  });
   
+  // Delete an item by itemNo
+  router.delete('/:itemNo', async (req, res) => {
+    try {
+      const deletedItem = await Item.findOneAndDelete({ itemNo: req.params.itemNo });
+      if (deletedItem) {
+        res.status(200).json({ message: 'Item deleted successfully.' });
+      } else {
+        res.status(404).json({ error: 'Item not found.' });
+      }
+    } catch (err) {
+      res.status(500).json({ error: 'Failed to delete the item.' });
+    }
+  });
+  
+  module.exports = router;
