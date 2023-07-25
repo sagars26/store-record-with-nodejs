@@ -22,3 +22,17 @@ router.get('/', async (req, res) => {
       res.status(500).json({ error: 'Failed to retrieve items.' });
     }
   });
+
+  // Get a specific item by itemNo
+router.get('/:itemNo', async (req, res) => {
+    try {
+      const item = await Item.findOne({ itemNo: req.params.itemNo });
+      if (item) {
+        res.status(200).json(item);
+      } else {
+        res.status(404).json({ error: 'Item not found.' });
+      }
+    } catch (err) {
+      res.status(500).json({ error: 'Failed to retrieve the item.' });
+    }
+  });
