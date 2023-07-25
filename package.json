@@ -1,0 +1,16 @@
+{
+  "name": "store-record-with-nodejs",
+  "version": "1.0.0",
+  "description": "creating the Records App using Node.js as the backend server and MongoDB as the database. his will involve building a full-stack application where you can store item records and apply discounts when the total purchase exceeds 1000.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sagar saini",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "mongoose": "^7.4.1"
+  }
+}
