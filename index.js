@@ -18,3 +18,13 @@ mongoose.connect('mongodb://localhost/recordsdb', { useNewUrlParser: true, useUn
     });
   })
   .catch((err) => console.error('Error connecting to MongoDB:', err));
+
+// Enable CORS (Cross-Origin Resource Sharing)
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+  });
+  
+  // Routes
+  app.use('/api/items', itemsRoutes);
