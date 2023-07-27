@@ -1,15 +1,16 @@
 const mongoose = require('mongoose');
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost/recordsdb', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://127.0.0.1:27017/recordsdb', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
   .then(() => {
     console.log('Connected to MongoDB');
-    // Call the function to insert items when the database is connected
-    insertItems();
-  })
-  .catch((err) => {
-    console.error('Error connecting to MongoDB:', err);
+  }).catch((error) => {
+    console.error('Error connecting to MongoDB:', error);
   });
+
 
 // Import the Item model (Assuming the correct path to your item model)
 const Item = require('./models/item');
