@@ -1,30 +1,22 @@
-// index.js
+// index.js (or app.js)
 
 const express = require('express');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-
 const app = express();
-const PORT = process.env.PORT || 3000;
+const path = require('path');
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+// Configure Express to serve static files from the "public" folder
+app.use(express.static(path.join(__dirname, 'public')));
 
-mongoose.connect('mongodb://127.0.0.1:27017/recordsdb', { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => {
-    console.log('Connected to MongoDB');
-    app.listen(PORT, () => {
-      console.log(`Server is running on port ${PORT}`);
-    });
-  })
-  .catch((err) => console.error('Error connecting to MongoDB:', err));
+// ... Other route configurations
 
-// Enable CORS (Cross-Origin Resource Sharing)
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    next();
-  });
-  
-  // Routes
-  app.use('/api/items', itemsRoutes);
+// Serve the frontend (index.html) for the root URL
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+// ... Other route configurations
+
+// Start the server
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
+});
