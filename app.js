@@ -1,4 +1,6 @@
 // app.js
+const mongoose = require('../db'); // Adjust the path if necessary
+const Item = require('./models/item');
 
 const itemForm = document.getElementById('item-form');
 const itemsList = document.getElementById('items-list');

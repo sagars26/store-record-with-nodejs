@@ -1,4 +1,5 @@
 // models/item.js
+const mongoose = require('../db'); // Adjust the path if necessary
 
 const mongoose = require('mongoose');
 
